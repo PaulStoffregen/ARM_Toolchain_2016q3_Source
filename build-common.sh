@@ -288,20 +288,22 @@ ZLIB_PACK=$ZLIB.tar.gz
 RELEASEDATE=`date +%Y%m%d`
 release_year=${RELEASEDATE:0:4}
 release_month=${RELEASEDATE:4:2}
-case $release_month in
-    01|02|03)
-        RELEASEVER=${release_year}q1
-        ;;
-    04|05|06)
-        RELEASEVER=${release_year}q2
-        ;;
-    07|08|09)
-        RELEASEVER=${release_year}q3
-        ;;
-    10|11|12)
-        RELEASEVER=${release_year}q4
-        ;;
-esac
+#case $release_month in
+#    01|02|03)
+#        RELEASEVER=${release_year}q1
+#        ;;
+#    04|05|06)
+#        RELEASEVER=${release_year}q2
+#        ;;
+#    07|08|09)
+#        RELEASEVER=${release_year}q3
+#        ;;
+#    10|11|12)
+#        RELEASEVER=${release_year}q4
+#        ;;
+#esac
+# This is version 2016q3, regardless of when we recompile
+RELEASEVER=2016q3
 
 RELEASE_FILE=release.txt
 README_FILE=readme.txt
