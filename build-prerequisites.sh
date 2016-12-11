@@ -35,6 +35,11 @@ umask 022
 
 exec < /dev/null
 
+# Added for Raspberry Pi
+LIBRARY_PATH=/usr/lib/$(gcc -print-multiarch)
+CPATH=/usr/include/$(gcc -print-multiarch)
+export LIBRARY_PATH CPATH
+
 script_path=`cd $(dirname $0) && pwd -P`
 . $script_path/build-common.sh
 
@@ -140,8 +145,8 @@ echo Task [I-1] /$HOST_NATIVE/gmp/
 rm -rf $BUILDDIR_NATIVE/gmp && mkdir -p $BUILDDIR_NATIVE/gmp 
 pushd $BUILDDIR_NATIVE/gmp
  
-CPPFLAGS="-fexceptions" $SRCDIR/$GMP/configure --build=$BUILD \
-    --host=$HOST_NATIVE \
+# for Raspberry Pi, let configure find the build and host settings
+CPPFLAGS="-fexceptions" $SRCDIR/$GMP/configure \
     --prefix=$BUILDDIR_NATIVE/host-libs/usr \
     --enable-cxx \
     --disable-shared \
@@ -156,8 +161,8 @@ echo Task [I-2] /$HOST_NATIVE/mpfr/
 rm -rf $BUILDDIR_NATIVE/mpfr && mkdir -p $BUILDDIR_NATIVE/mpfr
 pushd $BUILDDIR_NATIVE/mpfr
 
-$SRCDIR/$MPFR/configure --build=$BUILD \
-    --host=$HOST_NATIVE \
+# for Raspberry Pi, let configure find the build and host settings
+$SRCDIR/$MPFR/configure \
     --target=$TARGET \
     --prefix=$BUILDDIR_NATIVE/host-libs/usr \
     --disable-shared \
@@ -173,8 +178,8 @@ echo Task [I-3] /$HOST_NATIVE/mpc/
 rm -rf $BUILDDIR_NATIVE/mpc && mkdir -p $BUILDDIR_NATIVE/mpc 
 pushd $BUILDDIR_NATIVE/mpc 
 
-$SRCDIR/$MPC/configure --build=$BUILD \
-    --host=$HOST_NATIVE \
+# for Raspberry Pi, let configure find the build and host settings
+$SRCDIR/$MPC/configure \
     --target=$TARGET \
     --prefix=$BUILDDIR_NATIVE/host-libs/usr \
     --disable-shared \
@@ -191,8 +196,8 @@ echo Task [I-4] /$HOST_NATIVE/isl/
 rm -rf $BUILDDIR_NATIVE/isl && mkdir -p $BUILDDIR_NATIVE/isl
 pushd $BUILDDIR_NATIVE/isl
 
-$SRCDIR/$ISL/configure --build=$BUILD \
-    --host=$HOST_NATIVE \
+# for Raspberry Pi, let configure find the build and host settings
+$SRCDIR/$ISL/configure \
     --target=$TARGET \
     --prefix=$BUILDDIR_NATIVE/host-libs/usr \
     --disable-shared \
@@ -208,8 +213,8 @@ echo Task [I-5] /$HOST_NATIVE/cloog/
 rm -rf $BUILDDIR_NATIVE/cloog && mkdir -p $BUILDDIR_NATIVE/cloog
 pushd $BUILDDIR_NATIVE/cloog
 
-$SRCDIR/$CLOOG/configure --build=$BUILD \
-    --host=$HOST_NATIVE \
+# for Raspberry Pi, let configure find the build and host settings
+$SRCDIR/$CLOOG/configure \
     --target=$TARGET \
     --prefix=$BUILDDIR_NATIVE/host-libs/usr \
     --disable-shared \
@@ -228,8 +233,8 @@ echo Task [I-6] /$HOST_NATIVE/libelf/
 rm -rf $BUILDDIR_NATIVE/libelf && mkdir -p $BUILDDIR_NATIVE/libelf
 pushd $BUILDDIR_NATIVE/libelf
 
-$SRCDIR/$LIBELF/configure --build=$BUILD \
-    --host=$HOST_NATIVE \
+# for Raspberry Pi, let configure find the build and host settings
+$SRCDIR/$LIBELF/configure \
     --target=$TARGET \
     --prefix=$BUILDDIR_NATIVE/host-libs/usr \
     --disable-shared \
@@ -244,8 +249,8 @@ echo Task [I-7] /$HOST_NATIVE/expat/
 rm -rf $BUILDDIR_NATIVE/expat && mkdir -p $BUILDDIR_NATIVE/expat
 pushd $BUILDDIR_NATIVE/expat
 
-$SRCDIR/$EXPAT/configure --build=$BUILD \
-    --host=$HOST_NATIVE \
+# for Raspberry Pi, let configure find the build and host settings
+$SRCDIR/$EXPAT/configure \
     --target=$TARGET \
     --prefix=$BUILDDIR_NATIVE/host-libs/usr \
     --disable-shared \
@@ -259,6 +264,10 @@ popd
 if [ "x$skip_mingw32" == "xyes" ] ; then
     exit 0
 fi
+
+# for Raspberry Pi, always skip mingw32
+exit 0
+
 
 saveenv
 saveenvvar CC_FOR_BUILD gcc
