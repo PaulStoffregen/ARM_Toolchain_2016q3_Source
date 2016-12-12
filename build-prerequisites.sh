@@ -77,7 +77,7 @@ if [ $# -gt 2 ] ; then
 fi
 
 skip_steps=
-skip_mingw32=no
+skip_mingw32=yes
 
 for ac_arg; do
     case $ac_arg in

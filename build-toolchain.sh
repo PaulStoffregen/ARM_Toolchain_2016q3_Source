@@ -84,8 +84,8 @@ is_ppa_release=no
 is_native_build=yes
 skip_manual=yes
 skip_steps=
-skip_gdb_with_python=no
-skip_mingw32_gdb_with_python=no
+skip_gdb_with_python=yes
+skip_mingw32_gdb_with_python=yes
 build_type=
 build_tools=
 
