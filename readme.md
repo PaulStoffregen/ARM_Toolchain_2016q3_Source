@@ -8,8 +8,8 @@ To build, use these commands:
     cd src
     find -name '*.tar.*' | xargs -I% tar -xf %
     cd ../
-    ./build-prerequisites.sh --skip_mingw32
-    ./build-toolchain.sh --skip_mingw32
+    ./build-prerequisites.sh
+    ./build-toolchain.sh
 
 
 Original README
