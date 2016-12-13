@@ -3,6 +3,9 @@ ARM Embedded Toolchain 2016q3 for Arduino on Raspberry Pi
 
 This copy of the 2016q3 "arm-none-eabi-gcc" toolchain used by Arduino is slightly modified to be able to compile on Raspberry Pi.
 
+Before building, edit /etc/dphys-swapfile to increase your Raspberry Pi swap space.  (TODO: how muchis really needed?)  Reboot for this change to take effect.  If you run out of virtual memory, the build will fail with "Makefile:2138: recipe for target 's-automata' failed".
+
+
 To build, use these commands:
 
     cd src
