@@ -10,6 +10,7 @@ To build, use these commands:
 
     cd src
     find -name '*.tar.*' | xargs -I% tar -xf %
+    patch -p1 < ../gmp-4.3.2.patch
     cd ../
     ./build-prerequisites.sh
     ./build-toolchain.sh
