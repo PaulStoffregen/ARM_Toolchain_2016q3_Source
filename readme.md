@@ -16,6 +16,15 @@ To build, use these commands:
     ./build-toolchain.sh
 
 
+Building on nVidia Jetson TX2 (ARM 64 bit, aka AARCH64)
+-------------------------------------------------------
+
+To build on Jetson TX2 running Ubuntu 16.04, use the same commands as above but replace the last 2 lines with these commands:
+
+    ./build-prerequisites-aarch64.sh
+    ./build-toolchain-aarch64.sh
+
+
 Original README
 ---------------
 
