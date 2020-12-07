@@ -9,7 +9,7 @@ Before building, edit /etc/dphys-swapfile to increase your Raspberry Pi swap spa
 To build, use these commands:
 
     cd src
-    find -name '*.tar.*' | xargs -I% tar -xf %
+    find . -name '*.tar.*' | xargs -I% tar -xf %
     patch -p1 < ../gmp-4.3.2.patch
     cd ../
     ./build-prerequisites.sh
@@ -19,8 +19,12 @@ To build, use these commands:
 Building on nVidia Jetson TX2 (ARM 64 bit, aka AARCH64)
 -------------------------------------------------------
 
-To build on Jetson TX2 running Ubuntu 16.04, use the same commands as above but replace the last 2 lines with these commands:
+To build on Jetson TX2 running Ubuntu 16.04, use these commands:
 
+    cd src
+    find . -name '*.tar.*' | xargs -I% tar -xf %
+    patch -p1 < ../gmp-4.3.2.patch
+    cd ../
     ./build-prerequisites-aarch64.sh
     ./build-toolchain-aarch64.sh
 
